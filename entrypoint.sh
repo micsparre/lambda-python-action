@@ -6,9 +6,7 @@ deploy_lambda_dependencies () {
 
     echo "Installing dependencies..."
     mkdir -p python/lib/python3.9/site-packages > /dev/null
-    pip3 install -t ./python/lib/python3.9/site-packages -r "${INPUT_REQUIREMENTS_TXT}" 
-    echo | pip3 list
-    echo | ls ./python/lib/python3.9/site-packages
+    pip3 install -t ./python/lib/python3.9/site-packages -r "${INPUT_REQUIREMENTS_TXT}" > /dev/null
     echo "OK"
 
     echo "Zipping dependencies..."
@@ -24,7 +22,7 @@ deploy_lambda_dependencies () {
 
     echo "Updating lambda layer version..."
     aws lambda update-function-configuration --function-name "${INPUT_LAMBDA_FUNCTION_NAME}" --layers "${INPUT_LAMBDA_LAYER_ARN}:${VERSION}" > /dev/null
-    echo "OK\n"
+    echo "OK"
     echo "Depencencies was deployed successfully"
 }
 
