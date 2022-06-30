@@ -1,8 +1,8 @@
-FROM python:3.8-slim
+FROM python:3.9
 
 RUN apt-get update && apt-get install -y jq zip git
-RUN pip install --upgrade pip
-RUN pip install awscli
+RUN pip3 install --upgrade pip3
+RUN pip3 install awscli
 
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh

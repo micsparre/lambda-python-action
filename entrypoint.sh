@@ -5,9 +5,9 @@ set -e
 deploy_lambda_dependencies () {
 
     echo "Installing dependencies..."
-    mkdir -p python/lib/python3.8/site-packages > /dev/null
-    pip install -t ./python/lib/python3.8/site-packages -r "${INPUT_REQUIREMENTS_TXT}" > /dev/null
-    ls ./python/lib/python3.8/site-packages
+    mkdir -p python/lib/python3.9/site-packages > /dev/null
+    pip3 install -t ./python/lib/python3.9/site-packages -r "${INPUT_REQUIREMENTS_TXT}" 
+    echo | ls ./python/lib/python3.9/site-packages
     echo "OK"
 
     echo "Zipping dependencies..."
@@ -16,7 +16,7 @@ deploy_lambda_dependencies () {
     echo "OK"
 
     echo "Publishing dependencies layer..."
-    response=$(aws lambda publish-layer-version --compatible-runtimes python3.8 --layer-name "${INPUT_LAMBDA_LAYER_ARN}" --zip-file fileb://python.zip)
+    response=$(aws lambda publish-layer-version --compatible-runtimes python3.9 --layer-name "${INPUT_LAMBDA_LAYER_ARN}" --zip-file fileb://python.zip)
     VERSION=$(echo $response | jq '.Version')
     rm python.zip > /dev/null
     echo "OK"
