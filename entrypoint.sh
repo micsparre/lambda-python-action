@@ -7,6 +7,7 @@ deploy_lambda_dependencies () {
     echo "Installing dependencies..."
     mkdir -p python/lib/python3.9/site-packages > /dev/null
     pip3 install -t ./python/lib/python3.9/site-packages -r "${INPUT_REQUIREMENTS_TXT}" 
+    echo | pip3 list
     echo | ls ./python/lib/python3.9/site-packages
     echo "OK"
 

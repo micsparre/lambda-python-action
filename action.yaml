@@ -1,12 +1,12 @@
 
 name: AWS Lambda python deploy
-author: Den Zalman
-description: Deploy python 3.8 code to AWS Lambda with separate dependencies layer
+author: Den Zalman, forked by Michael Sparre
+description: Deploy python 3.9 code to AWS Lambda with separate dependencies layer
 inputs:
   lambda_region:
     description: 'Lambda AWS Region'
     required: false
-    default: 'us-east-1'
+    default: 'us-west-2'
   requirements_txt:
     description: Requirements file name
     required: false
